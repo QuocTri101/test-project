@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindMAXValue</title>
+</head>
+<body>
+    <h2>Find Max Value</h2>
+
+  <!-- Option 1: User enters numbers -->
+  <label>Enter numbers (comma-separated):</label><br>
+  <input type="text" id="userInput" placeholder="e.g. 12, 45, 7, 99, 23" ><br>
+  <button onclick="findMaxFromInput()">Find Max (User Input)</button><br><br>
+
+  <!-- Option 2: Random numbers -->
+  <button onclick="generateRandom()">Generate Random Numbers & Find Max</button>
+
+  <p id="result">Max Value: —</p>
+
+  <script>
+    // Find max from user input
+    function findMaxFromInput() {
+      let input = document.getElementById("userInput").value;
+      let numbers = input.split(",").map(num => parseFloat(num.trim())).filter(n => !isNaN(n));
+
+      if (numbers.length === 0) {
+        document.getElementById("result").textContent = "Please enter valid numbers!";
+        return;
+      }
+
+      let maxVal = Math.max(...numbers);
+      document.getElementById("result").textContent = "Max Value: " + maxVal;
+    }
+
+    // Generate random numbers and find max
+    function generateRandom() {
+      let numbers = [];
+      for (let i = 0; i < 10; i++) { // generate 10 random numbers
+        numbers.push(Math.floor(Math.random() * 100)); // random 0–99
+      }
+      let maxVal = Math.max(...numbers);
+      document.getElementById("result").textContent = 
+        "Random Numbers: " + numbers.join(", ") + " → Max Value: " + maxVal;
+    }
+  </script>
+</body>
+</html>
